@@ -1,201 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySphere - Learn Mathematics</title>
-
-    <!-- MathJax for equations -->
-    <script>
-        window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-        };
-    </script>
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <!-- Google Fonts for better typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* Define color scheme */
-        :root {
-            --primary: #1A237E;  /* Deep blue */
-            --secondary: #1976D2; /* Bright blue */
-            --accent: #4CAF50;   /* Fresh green */
-            --background: #F4F6F9; /* Light grayish-blue */
-            --text-light: #ffffff;
-            --text-dark: #333;
-            --card-bg: #fff;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-
-        /* Global styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        header, footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-        }
-
-        nav {
-            background: var(--secondary);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-            transition: opacity 0.3s ease;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 3px 10px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px var(--shadow);
-        }
-
-        .lesson-card { border-left: 5px solid var(--accent); }
-        .exercise-card { border-left: 5px solid var(--secondary); }
-
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        button {
-            background: var(--accent);
-            color: var(--text-light);
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #43A047; /* Slightly darker green */
-        }
-
-        footer {
-            margin-top: 3rem;
-        }
-
-        /* Responsive Improvements */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudySphere - Learn Mathematics</title>
+  
+  <!-- MathJax for equations -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <!-- Google Fonts for typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Updated Color Palette for a Comfortable Look */
+    :root {
+      --primary: #4A90E2;      /* Soft blue */
+      --secondary: #357ABD;    /* Muted blue */
+      --accent: #6FCF97;       /* Soothing green */
+      --background: #F7F9FB;   /* Light grayish-blue */
+      --text-light: #ffffff;
+      --text-dark: #333;
+      --card-bg: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+  
+    body {
+      background-color: var(--background);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+  
+    header, footer {
+      background-color: var(--primary);
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem;
+    }
+  
+    /* Animated Title */
+    header h1 {
+      font-size: 2.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+  
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  
+    nav {
+      background: var(--secondary);
+      padding: 1rem;
+      text-align: center;
+    }
+  
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: opacity 0.3s ease;
+    }
+  
+    nav a:hover {
+      opacity: 0.8;
+    }
+  
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+  
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px var(--shadow);
+    }
+  
+    .lesson-card {
+      border-left: 5px solid var(--accent);
+    }
+  
+    .exercise-card {
+      border-left: 5px solid var(--secondary);
+    }
+  
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+  
+    button:hover {
+      background: #5EBF82; /* Slightly darker green */
+    }
+  
+    footer {
+      margin-top: 3rem;
+    }
+  
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>🌍 StudySphere</h1>
-        <p>Your Global Mathematics Classroom</p>
-    </header>
-
-    <nav>
-        <a href="#lessons">Lessons</a>
-        <a href="#exercises">Exercises</a>
-        <a href="#resources">Resources</a>
-        <a href="#about">About</a>
-    </nav>
-
-    <div class="container">
-        <section id="lessons">
-            <h2>📚 Featured Lessons</h2>
-            <div class="card-grid">
-                <div class="card lesson-card">
-                    <h3>Algebra Basics</h3>
-                    <p>Master equations and variables.</p>
-                    <p>Example: \(2x + 5 = 15\)</p>
-                    <button onclick="loadLesson('algebra')">Start Lesson</button>
-                </div>
-
-                <div class="card lesson-card">
-                    <h3>Geometry Fundamentals</h3>
-                    <p>Explore shapes and theorems.</p>
-                    <p>Pythagoras: \(a^2 + b^2 = c^2\)</p>
-                    <button onclick="loadLesson('geometry')">Start Lesson</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="exercises" style="margin-top: 3rem;">
-            <h2>✏️ Practice Exercises</h2>
-            <div class="card-grid">
-                <div class="card exercise-card">
-                    <h3>Algebra Challenge</h3>
-                    <p>Solve linear and quadratic equations.</p>
-                    <p>Difficulty: ★★☆</p>
-                    <button onclick="startExercise('algebra')">Start Now</button>
-                </div>
-
-                <div class="card exercise-card">
-                    <h3>Geometry Puzzles</h3>
-                    <p>Calculate areas and angles.</p>
-                    <p>Difficulty: ★★★</p>
-                    <button onclick="startExercise('geometry')">Start Now</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>© 2023 StudySphere - Connecting Learners Worldwide</p>
-    </footer>
-
-    <script>
-        function loadLesson(topic) {
-            alert(`Loading ${topic} lesson...`);
-        }
-
-        function startExercise(topic) {
-            alert(`Starting ${topic} exercise...`);
-        }
-    </script>
+  <header>
+    <h1>🌍 StudySphere</h1>
+    <p>Your Global Mathematics Classroom</p>
+  </header>
+  
+  <nav>
+    <a href="#lessons">Lessons</a>
+    <a href="#exercises">Exercises</a>
+    <a href="#resources">Resources</a>
+    <a href="#about">About</a>
+  </nav>
+  
+  <div class="container">
+    <section id="lessons">
+      <h2>📚 Featured Lessons</h2>
+      <div class="card-grid">
+        <div class="card lesson-card">
+          <h3>Algebra Basics</h3>
+          <p>Master equations and variables.</p>
+          <p>Example: \(2x + 5 = 15\)</p>
+          <button onclick="loadLesson('algebra')">Start Lesson</button>
+        </div>
+  
+        <div class="card lesson-card">
+          <h3>Geometry Fundamentals</h3>
+          <p>Explore shapes and theorems.</p>
+          <p>Pythagoras: \(a^2 + b^2 = c^2\)</p>
+          <button onclick="loadLesson('geometry')">Start Lesson</button>
+        </div>
+      </div>
+    </section>
+  
+    <section id="exercises" style="margin-top: 3rem;">
+      <h2>✏️ Practice Exercises</h2>
+      <div class="card-grid">
+        <div class="card exercise-card">
+          <h3>Algebra Challenge</h3>
+          <p>Solve linear and quadratic equations.</p>
+          <p>Difficulty: ★★☆</p>
+          <button onclick="startExercise('algebra')">Start Now</button>
+        </div>
+  
+        <div class="card exercise-card">
+          <h3>Geometry Puzzles</h3>
+          <p>Calculate areas and angles.</p>
+          <p>Difficulty: ★★★</p>
+          <button onclick="startExercise('geometry')">Start Now</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <footer>
+    <p>© 2023 StudySphere - Connecting Learners Worldwide</p>
+  </footer>
+  
+  <script>
+    function loadLesson(topic) {
+      alert(`Loading ${topic} lesson...`);
+    }
+  
+    function startExercise(topic) {
+      alert(`Starting ${topic} exercise...`);
+    }
+  </script>
 </body>
 </html>
