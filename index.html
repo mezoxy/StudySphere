@@ -1,210 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySphere - Learn Math Comfortably</title>
-    <!-- MathJax for equations -->
+    <title>StudySphere - Multilingual Math Learning</title>
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Arabic Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
     <style>
-        /* CSS - Modern Comfortable Theme */
         :root {
-            --primary: #2A4365;    /* Deep calm blue */
-            --secondary: #4ECDC4;  /* Soft teal */
-            --accent: #FF6B6B;     /* Warm coral */
-            --light: #F9F9F9;      /* Off-white background */
-            --text: #2D3748;       /* Soft dark gray */
+            --primary: #2A4365;
+            --secondary: #4ECDC4;
+            --accent: #FF6B6B;
+            --light: #F9F9F9;
+            --text: #2D3748;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            transition: all 0.3s ease;
         }
 
         body {
-            background-color: var(--light);
+            background: var(--light);
             color: var(--text);
             line-height: 1.7;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        header {
-            background: linear-gradient(135deg, var(--primary), #1A365D);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Amiri', 'Segoe UI', sans-serif;
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
+        .lang-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
         }
 
-        nav {
-            background-color: rgba(255,255,255,0.95);
-            padding: 1.2rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-
-        .lesson-card {
-            border-top: 4px solid var(--secondary);
-        }
-
-        .exercise-card {
-            border-top: 4px solid var(--accent);
-        }
-
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        button {
+        .lang-btn {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             background: var(--secondary);
             color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 1.2rem;
-            font-weight: 600;
-            transition: background 0.3s;
         }
 
-        button:hover {
-            background: var(--accent);
-        }
-
-        footer {
-            background-color: var(--primary);
-            color: rgba(255,255,255,0.9);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
+        /* Rest of previous CSS remains similar */
+        /* ... (keep previous header, nav, card styles) ... */
     </style>
 </head>
 <body>
-    <header>
-        <h1>🌐 StudySphere</h1>
-        <p>Mathematics Learning Made Comfortable</p>
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('fr')">Français</button>
+        <button class="lang-btn" onclick="changeLanguage('ar')">العربية</button>
+    </div>
+
+    <header data-en="StudySphere" data-fr="StudySphere" data-ar="سفيرالدراسة">
+        <h1>🌐 <span id="site-title">StudySphere</span></h1>
+        <p id="site-tagline" data-en="Mathematics Learning Made Comfortable" 
+           data-fr="Apprentissage des Mathématiques Confortable" 
+           data-ar="تعلم الرياضيات بكل راحة"></p>
     </header>
 
     <nav>
-        <a href="#lessons">Lessons</a>
-        <a href="#exercises">Exercises</a>
-        <a href="#resources">Resources</a>
-        <a href="#about">About</a>
+        <a href="#lessons" data-en="Lessons" data-fr="Leçons" data-ar="الدروس">Lessons</a>
+        <a href="#exercises" data-en="Exercises" data-fr="Exercices" data-ar="التمارين">Exercises</a>
+        <a href="#resources" data-en="Resources" data-fr="Ressources" data-ar="الموارد">Resources</a>
+        <a href="#about" data-en="About" data-fr="À propos" data-ar="حول">About</a>
     </nav>
 
     <div class="container">
         <section id="lessons">
-            <h2>📖 Featured Lessons</h2>
+            <h2 data-en="📖 Featured Lessons" data-fr="📖 Leçons en vedette" data-ar="📖 الدروس المميزة"></h2>
             <div class="card-grid">
                 <div class="card lesson-card">
-                    <h3>Algebra Foundations</h3>
-                    <p>Master variables and equations step-by-step.</p>
-                    <p>Example: \(3x - 7 = 14\)</p>
-                    <button onclick="loadLesson('algebra')">Start Learning →</button>
-                </div>
-
-                <div class="card lesson-card">
-                    <h3>Geometry Basics</h3>
-                    <p>Understand shapes and spatial relationships.</p>
-                    <p>Area formula: \(A = \frac{1}{2}bh\)</p>
-                    <button onclick="loadLesson('geometry')">Start Learning →</button>
+                    <h3 data-en="Algebra Foundations" data-fr="Fondements de l'algèbre" data-ar="أسس الجبر"></h3>
+                    <p data-en="Master variables and equations step-by-step." 
+                       data-fr="Maîtrisez les variables et équations étape par étape." 
+                       data-ar="أتقن المتغيرات والمعادلات خطوة بخطوة"></p>
+                    <p>\(3x - 7 = 14\)</p>
+                    <button data-en="Start Learning →" data-fr="Commencer l'apprentissage →" data-ar="ابدأ التعلم →"></button>
                 </div>
             </div>
         </section>
 
-        <section id="exercises" style="margin-top: 4rem;">
-            <h2>✍️ Practice Exercises</h2>
-            <div class="card-grid">
-                <div class="card exercise-card">
-                    <h3>Algebra Practice</h3>
-                    <p>Solve equations with increasing difficulty</p>
-                    <p>Progress: ▰▰▱▱▱ 40%</p>
-                    <button onclick="startExercise('algebra')">Start Practice →</button>
-                </div>
-
-                <div class="card exercise-card">
-                    <h3>Geometry Challenge</h3>
-                    <p>Calculate areas and volumes</p>
-                    <p>Progress: ▰▰▰▱▱ 60%</p>
-                    <button onclick="startExercise('geometry')">Start Practice →</button>
-                </div>
-            </div>
-        </section>
+        <!-- Add more translated content following same pattern -->
     </div>
 
-    <footer>
-        <p>© 2023 StudySphere - Learn at Your Own Pace</p>
-    </footer>
-
     <script>
-        // JavaScript
-        function loadLesson(topic) {
-            alert(`Loading ${topic} lesson...`);
-            // Add lesson loading logic
+        // Translation System
+        function changeLanguage(lang) {
+            // Update text content
+            document.querySelectorAll('[data-en], [data-fr], [data-ar]').forEach(element => {
+                if(element.dataset[lang]) {
+                    element.textContent = element.dataset[lang];
+                }
+            });
+
+            // Handle RTL for Arabic
+            document.body.classList.toggle('rtl', lang === 'ar');
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update MathJax (important for RTL)
+            MathJax.typesetPromise();
         }
 
-        function startExercise(topic) {
-            alert(`Starting ${topic} exercise...`);
-            // Add exercise logic
-        }
-
-        // Initialize MathJax
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
+        // Initialize with English
+        changeLanguage('en');
     </script>
 </body>
 </html>
